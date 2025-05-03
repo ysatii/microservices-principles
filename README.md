@@ -204,7 +204,8 @@ https://github.com/ysatii/microservices-principles/blob/main/11-microservices-02
 
 откроем порт для управления хранилищем и дадим имена контейнерам
 
-### Убедимся еще раз что есть бакет **data**
+### Убедимся еще раз что есть 
+бакет **data**
 
 ![рис 6](https://github.com/ysatii/microservices-principles/blob/main/img/img_6.jpg)  
 он был создан при поднятии контейнера 
