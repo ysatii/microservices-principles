@@ -189,7 +189,9 @@ curl -X POST http://localhost/upload    -H "Authorization: Bearer eyJ0eXAiOiJKV1
 ad034b7d-b27f-4554-92a6-0c5c674393e3.jpg 
 ```
 
-### скачиваем картинку по адресу http://localhost/images/ad034b7d-b27f-4554-92a6-0c5c674393e3.jpg за счет маршрутизация трафика  nginx . Т. К. само хранилище доступно по порту 9000 только с других контейнеров 
+### скачиваем картинку по адресу  
+http://localhost/images/ad034b7d-b27f-4554-92a6-0c5c674393e3.jpg 
+ за счет маршрутизация трафика  nginx т. к. само хранилище доступно по порту 9000 только с других контейнеров и недоступно из вне!
 ```
 curl -O http://localhost/images/ad034b7d-b27f-4554-92a6-0c5c674393e3.jpg  > ad034b7d-b27f-4554-92a6-0c5c674393e3.jpg
 ```
