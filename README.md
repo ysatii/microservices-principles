@@ -157,6 +157,52 @@ curl -X GET http://localhost/images/4e6df220-295e-4231-82bc-45e4b1484430.jpg
 ---
 
 ## Решение 3: API Gateway * (необязательная)
+### запустим сборку 
+![рис 1](https://github.com/ysatii/microservices-principles/blob/main/img/img_1.jpg)  
+![рис 2](https://github.com/ysatii/microservices-principles/blob/main/img/img_2.jpg)  
+![рис 3](https://github.com/ysatii/microservices-principles/blob/main/img/img_3.jpg)  
+
+### контейнеры в работе 
+![рис 5](https://github.com/ysatii/microservices-principles/blob/main/img/img_5.jpg)  
 
 
+### Выберем файл 
+![рис 4](https://github.com/ysatii/microservices-principles/blob/main/img/img_4.jpg)  
 
+### отправили Запрос на получение тотена и добавление пользователя
+```
+curl -X POST -H 'Content-Type: application/json' -d '{"login":"bob", "password":"qwe123"}' http://localhost/token
+```
+
+### получили токен
+```
+eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJib2IifQ.hiMVLmssoTsy1MqbmIoviDeFPvo-nCd92d4UFiN2O2I
+```
+
+### добавили картинку og_og_1567193216275491976.jpg
+```
+curl -X POST http://localhost/upload    -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJib2IifQ.hiMVLmssoTsy1MqbmIoviDeFPvo-nCd92d4UFiN2O2I"    -H "Content-Type: application/octet-stream"   --data-binary @og_og_1567193216275491976.jpg
+```
+
+### получили новое имя для картинки 
+```
+ad034b7d-b27f-4554-92a6-0c5c674393e3.jpg 
+```
+
+### скачиваем картинку по адресу http://localhost/images/ad034b7d-b27f-4554-92a6-0c5c674393e3.jpg за счет маршрутизация трафика  nginx . Т. К. само хранилище доступно по порту 9000 только с других контейнеров 
+```
+curl -O http://localhost/images/ad034b7d-b27f-4554-92a6-0c5c674393e3.jpg  > ad034b7d-b27f-4554-92a6-0c5c674393e3.jpg
+```
+
+### использовался файл nginx настройки 
+https://github.com/ysatii/microservices-principles/blob/main/11-microservices-02-principles/gateway/nginx.conf
+
+### в Файле **docker-compose.yaml**
+https://github.com/ysatii/microservices-principles/blob/main/11-microservices-02-principles/docker-compose.yaml
+
+откроем порт для управления хранилищем и дадим имена контейнерам
+
+### Убедимся еще раз что есть бакет **data**
+
+![рис 6](https://github.com/ysatii/microservices-principles/blob/main/img/img_6.jpg)  
+он был создан при поднятии контейнера 
