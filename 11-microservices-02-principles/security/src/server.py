@@ -1,7 +1,7 @@
 from os import getenv
 from flask import Flask, request, make_response, jsonify
-from prometheus_flask_exporter import PrometheusMetrics, NO_PREFIX
-from passlib.hash import pbkdf2_sha256
+# from prometheus_flask_exporter import PrometheusMetrics, NO_PREFIX
+# from passlib.hash import pbkdf2_sha256
 import jwt
 
 server = Flask(__name__)
